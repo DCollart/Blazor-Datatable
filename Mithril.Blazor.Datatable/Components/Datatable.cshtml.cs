@@ -7,5 +7,8 @@ namespace Mithril.Blazor.Datatable.Components
     {
         [Parameter]
         protected IReadOnlyList<TItem> Items { get; set; }
+
+        [Parameter]
+        protected IReadOnlyList<Column<TItem>> Columns { get; set; }
     }
 }
