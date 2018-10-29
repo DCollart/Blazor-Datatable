@@ -7,8 +7,8 @@ namespace Mithril.Blazor.Datatable.Components
 {
     public class Column<TItem>
     {
-        public Func<string> Name { get; set; }
-        public Func<TItem, string> Content { get; set; }
+        public Func<object> Name { get; set; }
+        public Func<TItem, object> Content { get; set; }
 
         public Column(Func<string> name, Func<TItem, string> content)
         {

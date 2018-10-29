@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Blazor.Components;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Mithril.Blazor.Datatable.Components
 {
@@ -17,6 +19,24 @@ namespace Mithril.Blazor.Datatable.Components
         [Parameter]
         protected int PageNumber { get; set; } = 1;
 
+        protected int MaxPageNumber => (int)Math.Ceiling(((double)Items.Count()) / PageSize);
+
         protected IEnumerable<TItem> CurrentPage => Items.Page(PageSize, PageNumber);
+
+        protected void Next()
+        {
+            if (PageNumber < MaxPageNumber)
+            {
+                PageNumber++;
+            }
+        }
+
+        protected void Previous()
+        {
+            if (PageNumber > 1)
+            {
+                PageNumber--;
+            }
+        }
     }
 }

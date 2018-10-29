@@ -1,7 +1,7 @@
 ﻿@inherits DatatableModel<TItem>
 @typeparam TItem
-
-<table class="table">
+<div>
+    <table class="table">
         <thead>
             <tr>
                 @foreach (var column in Columns)
@@ -14,14 +14,14 @@
             @foreach (var item in CurrentPage)
             {
                 <tr>
-                    @foreach(var column in Columns)
+                    @foreach (var column in Columns)
                     {
                         <td>@column.Content(item)</td>
                     }
                 </tr>
             }
         </tbody>
-        <tfoot>
-            <tr>Total items: @Items.Count() | Page size: @CurrentPage.Count() | Page number : @PageNumber </tr>
-        </tfoot>
     </table>
+</div>
+<div>Displayed items: @CurrentPage.Count() (Total: @Items.Count())</div>
+<div><span onclick="@Previous">Previous</span> @PageNumber <span onclick="@Next">Next</span></div>
