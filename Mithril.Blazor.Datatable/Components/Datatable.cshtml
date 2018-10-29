@@ -11,7 +11,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Items)
+            @foreach (var item in CurrentPage)
             {
                 <tr>
                     @foreach(var column in Columns)
@@ -22,6 +22,6 @@
             }
         </tbody>
         <tfoot>
-            <tr>Total items: @Items.Count() </tr>
+            <tr>Total items: @Items.Count() | Page size: @CurrentPage.Count() | Page number : @PageNumber </tr>
         </tfoot>
     </table>
