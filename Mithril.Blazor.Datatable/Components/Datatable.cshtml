@@ -24,4 +24,5 @@
     </table>
 </div>
 <div>Displayed items: @CurrentPage.Count() (Total: @Items.Count())</div>
-<div><span onclick="@Previous">Previous</span> @PageNumber <span onclick="@Next">Next</span></div>
+<div>@PageNumber</div>
+<Pagination PageNumber="@PageNumber" PageSize="@PageSize" TotalItems="Items.Count()" OnPageNumberChanged="@OnPageNumberChanged"/>

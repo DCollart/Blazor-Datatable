@@ -19,24 +19,14 @@ namespace Mithril.Blazor.Datatable.Components
         [Parameter]
         protected int PageNumber { get; set; } = 1;
 
-        protected int MaxPageNumber => (int)Math.Ceiling(((double)Items.Count()) / PageSize);
-
         protected IEnumerable<TItem> CurrentPage => Items.Page(PageSize, PageNumber);
 
-        protected void Next()
+        protected void OnPageNumberChanged(int pageNumber)
         {
-            if (PageNumber < MaxPageNumber)
-            {
-                PageNumber++;
-            }
-        }
+            Console.WriteLine("OnPageNumberChanged");
 
-        protected void Previous()
-        {
-            if (PageNumber > 1)
-            {
-                PageNumber--;
-            }
+            PageNumber = pageNumber;
+            this.StateHasChanged();
         }
     }
 }
