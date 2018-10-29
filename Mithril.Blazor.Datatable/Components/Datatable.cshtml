@@ -1,4 +1,18 @@
 ﻿@inherits DatatableModel<TItem>
 @typeparam TItem
 
-<p>Datatable</p>
+<table class="table">
+    <thead>
+        </thead>
+        <tbody>
+            @foreach (var item in Items)
+            {
+                <tr>
+                    @item.ToString()
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>Total items: @Items.Count() </tr>
+        </tfoot>
+    </table>

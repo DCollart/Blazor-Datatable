@@ -9,7 +9,11 @@ namespace Mithril.Blazor.Datatable.Tests
 
         public DatatableTestModel()
         {
-            Items = new List<object>();
+            Items = new List<object>()
+            {
+                new object(),
+                new object()
+            };
         }
     }
 }
