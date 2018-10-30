@@ -39,7 +39,6 @@ namespace Mithril.Blazor.Datatable.Components
         {
             PageNumber = pageNumber;
             OnPageNumberChanged?.Invoke(pageNumber);
-            Console.WriteLine("GoToPage");
         }
     }
 }

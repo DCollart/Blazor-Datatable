@@ -13,7 +13,7 @@
         <tbody>
             @foreach (var item in CurrentPage)
             {
-                <tr>
+                <tr onclick="@(() => OnLineClick?.Invoke(item))">
                     @foreach (var column in Columns)
                     {
                         <td>@column.Content(item)</td>

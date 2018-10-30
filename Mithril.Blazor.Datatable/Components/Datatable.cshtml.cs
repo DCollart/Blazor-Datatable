@@ -19,12 +19,13 @@ namespace Mithril.Blazor.Datatable.Components
         [Parameter]
         protected int PageNumber { get; set; } = 1;
 
+        [Parameter]
+        protected Action<TItem> OnLineClick { get; set; }
+
         protected IEnumerable<TItem> CurrentPage => Items.Page(PageSize, PageNumber);
 
         protected void OnPageNumberChanged(int pageNumber)
         {
-            Console.WriteLine("OnPageNumberChanged");
-
             PageNumber = pageNumber;
             this.StateHasChanged();
         }

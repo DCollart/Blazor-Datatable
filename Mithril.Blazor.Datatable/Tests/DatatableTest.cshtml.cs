@@ -29,5 +29,10 @@ namespace Mithril.Blazor.Datatable.Tests
                 new Column<Customer>(() => "Fullname", (item) => $"{item.FirstName} {item.LastName}")
             };
         }
+
+        protected void OnLineClick(Customer customer)
+        {
+            System.Console.WriteLine(customer.FirstName);
+        }
     }
 }
