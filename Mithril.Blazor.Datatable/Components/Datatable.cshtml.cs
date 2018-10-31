@@ -29,17 +29,16 @@ namespace Mithril.Blazor.Datatable.Components
 
         protected IEnumerable<TItem> GetCurrentPage()
         {
+            return GetFilteredItems().Page(PageSize, PageNumber);
+        }
 
-            if (!string.IsNullOrEmpty(SearchCriteria))
-            {
-                // I used IndexOf instead of Contains because of the ignore case option.
-                var items = Items.Where(i => Columns.Select(c => c.Content(i).ToString()).Any(c => c.IndexOf(SearchCriteria, StringComparison.OrdinalIgnoreCase) >= 0));
-                return items.Page(PageSize, PageNumber);
-            }   
-            else
-            {
-                return Items.Page(PageSize, PageNumber);
-            }
+        protected IEnumerable<TItem> GetFilteredItems()
+        {
+            return string.IsNullOrEmpty(SearchCriteria) ?
+            Items
+            : Items.Where(i => Columns
+                .Select(c => c.Content(i).ToString())
+                .Any(c => c.IndexOf(SearchCriteria, StringComparison.OrdinalIgnoreCase) >= 0));      
         }
 
         protected void OnPageNumberChanged(int pageNumber)
@@ -50,8 +49,11 @@ namespace Mithril.Blazor.Datatable.Components
 
         protected void OnSearchCriteraChange(UIChangeEventArgs changeEvent)
         {
-            SearchCriteria = changeEvent.Value.ToString();
-            PageNumber = 1;
+            if (changeEvent.Value.ToString() != SearchCriteria)
+            {
+                SearchCriteria = changeEvent.Value.ToString();
+                PageNumber = 1;
+            }
         }
     }
 }
