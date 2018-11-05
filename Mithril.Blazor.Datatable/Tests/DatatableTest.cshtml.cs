@@ -15,7 +15,7 @@ namespace Mithril.Blazor.Datatable.Tests
         public DatatableTestModel()
         {
             Items = Builder<Customer>
-                .CreateListOfSize(10000)
+                .CreateListOfSize(1000)
                 .All()
                 .With(c => c.FirstName = Faker.NameFaker.FirstName())
                 .With(c => c.LastName = Faker.NameFaker.LastName())

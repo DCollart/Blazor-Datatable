@@ -27,9 +27,11 @@ namespace Mithril.Blazor.Datatable.Components
 
         protected string SearchCriteria { get; set; }
 
+        protected Column<TItem> OrderedBy { get; set; }
+
         protected IEnumerable<TItem> GetCurrentPage()
         {
-            return GetFilteredItems().Page(PageSize, PageNumber);
+            return GetOrderedItems().Page(PageSize, PageNumber);
         }
 
         protected IEnumerable<TItem> GetFilteredItems()
@@ -39,6 +41,14 @@ namespace Mithril.Blazor.Datatable.Components
             : Items.Where(i => Columns
                 .Select(c => c.Content(i).ToString())
                 .Any(c => c.IndexOf(SearchCriteria, StringComparison.OrdinalIgnoreCase) >= 0));      
+        }
+
+
+        protected IEnumerable<TItem> GetOrderedItems()
+        {
+            return string.IsNullOrEmpty(SearchCriteria) ?
+            GetFilteredItems()
+            : GetFilteredItems().OrderBy(OrderedBy.Content);
         }
 
         protected void OnPageNumberChanged(int pageNumber)
@@ -53,7 +63,14 @@ namespace Mithril.Blazor.Datatable.Components
             {
                 SearchCriteria = changeEvent.Value.ToString();
                 PageNumber = 1;
+
             }
+        }
+
+        protected void OnColumnClicked(Column<TItem> column)
+        {
+            PageNumber = 1;
+            OrderedBy = column;
         }
     }
 }
